@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGCSE Edexcel 4CP01 Data Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .question-set {
+            display: none;
+        }
+        .question-set.active {
+            display: block;
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        button {
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        select {
+            padding: 5px;
+            font-size: 16px;
+        }
+        .feedback {
+            color: red;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .wrong {
+            color: red;
+        }
+    </style>
+    <script>
+        function showSet(setId) {
+            document.querySelectorAll('.question-set').forEach(set => set.classList.remove('active'));
+            document.getElementById(setId).classList.add('active');
+        }
+
+        function gradeQuiz(setId) {
+            const quizSet = document.getElementById(setId);
+            const questions = quizSet.querySelectorAll('.question');
+            let score = 0;
+            let total = questions.length;
+
+            questions.forEach((q, index) => {
+                const userAnswer = q.querySelector('input, select').value.trim().toLowerCase();
+                const correctAnswer = q.getAttribute('data-answer').trim().toLowerCase();
+
+                const feedback = q.querySelector('.feedback');
+                if (userAnswer === correctAnswer) {
+                    score++;
+                    feedback.innerHTML = `Correct!`;
+                    feedback.classList.add('correct');
+                    feedback.classList.remove('wrong');
+                } else {
+                    feedback.innerHTML = `Wrong! Correct answer: ${correctAnswer}`;
+                    feedback.classList.add('wrong');
+                    feedback.classList.remove('correct');
+                }
+            });
+
+            const result = quizSet.querySelector('.result');
+            result.innerHTML = `You scored ${score} out of ${total}`;
+        }
+    </script>
+</head>
+<body>
+    <h1>IGCSE Edexcel 4CP01 Topic 3: Data Quiz</h1>
+    <p>Select a quiz set to start testing your knowledge!</p>
+    <select onchange="showSet(this.value)">
+        <option value="" disabled selected>Select a Quiz Set</option>
+        <option value="set1">Set 1: Storage Units and Binary Numbers</option>
+        <option value="set2">Set 2: Representation of Numbers and Characters</option>
+        <option value="set3">Set 3: Binary Arithmetic</option>
+        <option value="set4">Set 4: Images</option>
+        <option value="set5">Set 5: Sound, Compression, and Encryption</option>
+    </select>
+
+    <!-- Set 1 -->
+    <div id="set1" class="question-set">
+        <h2>Set 1: Storage Units and Binary Numbers</h2>
+        <ol>
+            <li class="question" data-answer="42">Convert the binary number <strong>101010</strong> to denary: <input type="text"> <span class="feedback"></span></li>
+            <li class="question" data-answer="101101">Convert the denary number <strong>45</strong> to binary: <input type="text"> <span class="feedback"></span></li>
+            <li class="question" data-answer="255">What is the largest value that can be stored in 8 bits? <input type="text"> <span class="feedback"></span></li>
+            <li class="question" data-answer="1024">How many bytes are in a kilobyte? <input type="text"> <span class="feedback"></span></li>
+            <li class="question" data-answer="10100011">Convert the hexadecimal number <strong>A3</strong> to binary: <input type="text"> <span class="feedback"></span></li>
+<li class="question" data-answer="-81">Convert the bit pattern  using sign and magnitude <strong>1101 0001</strong> to denary: <input type="text"> <span class="feedback"></span></li>
+<li class="question" data-answer="01001011">Convert the denary number <strong>75</strong>  to 8-bit binary to denary: <input type="text"> <span class="feedback"></span></li>
+<li class="question" data-answer="(2322*4128*16)/8*1000*1000+975">An image is 2322 pixels high and 4128 pixels wide.
+The image is stored with a 16-bit colour depth.
+The metadata for the image is 975 bytes.
+Construct an expression to show how the file size, in megabytes, is calculated. <input type="text"> <span class="feedback"></span></li>
+
+            <!-- Add more questions for Set 1 -->
+        </ol>
+        <button onclick="gradeQuiz('set1')">Submit</button>
+        <p class="result"></p>
+    </div>
+
+    <!-- Set 2 -->
+    <div id="set2" class="question-set">
+        <h2>Set 2: Representation of Numbers and Characters</h2>
+        <ol>
+            <li class="question" data-answer="65">What is the ASCII value of the character <strong>A</strong>? <input type="text"> <span class="feedback"></span></li>
+            <li class="question" data-answer="31">Convert the hexadecimal number <strong>1F</strong> to denary: <input type="text"> <span class="feedback"></span></li>
+            <li class="question" data-answer="7">How many bits are used by a standard ASCII <select><option value="">Select</option><option value="7">7</option></option><option value="8">8</option></option><option value="255">255</option></select> <span class="feedback"></span></li>
+            <!-- Add more questions for Set 2 -->
+        </ol>
+        <button onclick="gradeQuiz('set2')">Submit</button>
+        <p class="result"></p>
+    </div>
+
+    <!-- Set 3 -->
+    <div id="set3" class="question-set">
+        <h2>Set 3: Binary Arithmetic</h2>
+        <ol>
+            <li class="question" data-answer="10001">Add <strong>1010</strong> and <strong>0111</strong>: <input type="text"> <span class="feedback"></span></li>
+            <!-- Add more questions for Set 3 -->
+        </ol>
+        <button onclick="gradeQuiz('set3')">Submit</button>
+        <p class="result"></p>
+    </div>
+
+    <!-- Set 4 -->
+    <div id="set4" class="question-set">
+        <h2>Set 4: Images</h2>
+        <ol>
+            <li class="question" data-answer="pixel">What is a pixel? <input type="text"> <span class="feedback"></span></li>
+            <!-- Add more questions for Set 4 -->
+        </ol>
+        <button onclick="gradeQuiz('set4')">Submit</button>
+        <p class="result"></p>
+    </div>
+
+    <!-- Set 5 -->
+    <div id="set5" class="question-set">
+        <h2>Set 5: Sound, Compression, and Encryption</h2>
+        <ol>
+            <li class="question" data-answer="number of samples per second">What does "sample rate" mean? <input type="text"> <span class="feedback"></span></li>
+<li class="question" data-answer="File size can increase and some of the data might be lost"> Give two drawbacks of using compression software<select><option value="">Select</option><option value="File size can increase and some of the data might be lost">File size can increase and some of the data might be lost</option></option><option value="File size can decrease and some of the data might be lost">File size can decrease and some of the data might be lost</option></option><option value="To save files">To save files</option></select> <span class="feedback"></span></li>
+
+
+<li class="question" data-answer="To save storage space and to reduce transimission time">Give two reasons for reducing file sizes.<select><option value="">Select</option><option value="To save storage space and to find errors">To save storage space and to find errors</option></option><option value="To save storage space and to reduce transimission time">To save storage space and to reduce transimission time</option></option><option value="To decompress files">To decompress files</option></select> <span class="feedback"></span></li>
+
+
+
+
+            <!-- Add more questions for Set 5 -->
+        </ol>
+        <button onclick="gradeQuiz('set5')">Submit</button>
+        <p class="result"></p>
+    </div>
+</body>
+</html>
